@@ -65,7 +65,7 @@ export default async function() {
     const allTransactions = [...formattedTransactionsA, ...formattedTransactionsB];
     
     // Sort transactions by latest time first
-    allTransactions.sort((a, b) => b.time.getTime() - a.time.getTime());
+    allTransactions.sort((a: any, b: any) => b.time.getTime() - a.time.getTime());
     formattedTransactionsA.sort((a, b) => b.time.getTime() - a.time.getTime());
     formattedTransactionsB.sort((a, b) => b.time.getTime() - a.time.getTime());
 
