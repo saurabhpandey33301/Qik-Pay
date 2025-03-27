@@ -1,8 +1,7 @@
 "use server"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { prisma } from "@/index";
 
 export async function P2Ptransfer(to : string, amount : number) {
     // Implement P2P transfer here

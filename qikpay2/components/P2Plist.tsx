@@ -83,7 +83,7 @@ export default function P2Plist({ Alluser }: { Alluser: any }) {
       {/* Search Input */}
       <div className="w-full max-w-xl">
         <input
-          className="p-3 rounded-xl w-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
+          className="p-3 rounded-xl w-full text-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm"
           type="text"
           placeholder="Search by name"
           value={search}

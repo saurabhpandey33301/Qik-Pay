@@ -26,7 +26,7 @@ export default function Layout({ children }: { children: React.ReactNode }): JSX
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-72"} md:translate-x-0  `}
       >
         {/* Sidebar Header */}
-        <div className="flex items-center text-4xl text-white font-extrabold font-mono p-6 hover:cursor-pointer" onClick={()=>{
+        <div className="flex items-center text-4xl text-blue-400 font-extrabold font-mono p-6 hover:cursor-pointer" onClick={()=>{
            redirect("/")
         }}>
           <div className="hover:cursor-pointer">QikPay</div>

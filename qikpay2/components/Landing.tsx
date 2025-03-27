@@ -12,9 +12,9 @@ export default  function QikPayLanding() {
         {/* Navbar */}
         <nav className="flex justify-between items-center p-6 bg-gray-800 shadow-lg">
           <h1 className="text-2xl font-bold text-blue-400">QikPay</h1>
-          <button className="px-4 py-2 bg-blue-500 rounded-lg" onClick={()=>{
+          <button className="px-4 py-2 bg-blue-500 hover:bg-blue-700 hover:cursor-pointer rounded-lg" onClick={()=>{
              {user ? redirect("/dashboard") : redirect("/api/auth/signin")}
-          }}> {user ? "Go to Dashboard" : "Get Started"}</button>
+          }}> {user ? "Dashboard" : "Login"}</button>
         </nav>
         
         {/* Hero Section */}
@@ -23,11 +23,17 @@ export default  function QikPayLanding() {
           <p className="mt-4 text-lg text-gray-300 max-w-2xl">
             Experience seamless transactions with QikPay. Fast, reliable, and hassle-free payments at your fingertips.
           </p>
+          <div className="flex gap-2 ">
+            <button className="mt-6 px-6 py-3 hover:cursor-pointer bg-slate-600 border-2 border-slate-600 hover:border-white rounded-lg text-white text-lg" 
+            onClick={()=>{
+              window.open("https://github.com/saurabhpandey33301/Qik-Pay", "_blank");
+            }}>Source code </button>
           <button onClick={()=>{
              {user ? redirect("/dashboard") : redirect("/api/auth/signin")}
-          }} className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white text-lg">
+          }} className="mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 hover:cursor-pointer rounded-lg text-white text-lg">
             {user ? "Go to Dashboard" : "Get Started"}
           </button>
+          </div>
         </section>
         
         {/* Features Section */}
@@ -41,8 +47,8 @@ export default  function QikPayLanding() {
             <p className="text-gray-400 mt-2">Bank-grade security ensures your transactions are always safe.</p>
           </div>
           <div className="bg-gray-800 p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold">Global Support</h2>
-            <p className="text-gray-400 mt-2">Transact across borders with multi-currency support.</p>
+            <h2 className="text-xl font-semibold">Bank Transfer</h2>
+            <p className="text-gray-400 mt-2">Transfer money from your bank  easily.</p>
           </div>
         </section>
         

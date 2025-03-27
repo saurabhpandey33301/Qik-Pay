@@ -2,8 +2,7 @@
 import { getServerSession } from "next-auth";
 import { BalanceCard } from "../../../components/BalanceCard";
 
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { prisma } from "@/index";
 
 import { authOptions } from "@/app/lib/auth";
 

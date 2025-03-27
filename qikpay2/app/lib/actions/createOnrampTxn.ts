@@ -1,8 +1,7 @@
 "use server"
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { prisma } from "@/index";
 
 
 

@@ -24,15 +24,9 @@
 // }
 
 
-import { getServerSession } from "next-auth";
+
 import { redirect } from 'next/navigation'
-import { authOptions } from "./lib/auth";
-import QikPayLanding from "@/components/Landing";
 
 export default async function Page() {
-     return(
-        <>
-          <QikPayLanding/>
-        </>
-     )
+      redirect("/home")
 }
