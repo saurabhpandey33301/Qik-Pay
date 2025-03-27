@@ -43,14 +43,14 @@ export default async function() {
         }
     });
 
-    const formattedTransactionsA = transactionsA.map((t) => ({
+    const formattedTransactionsA = transactionsA.map((t:any) => ({
         time: new Date(t.startTime), // Convert to Date object for proper sorting
         amount: t.amount,
         status: t.status,
         provider: t.provider,
     }));
     
-    const formattedTransactionsB = transactionsB.map((t) => ({
+    const formattedTransactionsB = transactionsB.map((t:any) => ({
         time: new Date(t.timestamp), // Convert to Date object for proper sorting
         amount: t.amount,
         status: "UNKNOWN", // Default value
