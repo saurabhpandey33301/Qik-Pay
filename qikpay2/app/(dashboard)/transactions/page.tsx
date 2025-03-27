@@ -66,8 +66,8 @@ export default async function() {
     
     // Sort transactions by latest time first
     allTransactions.sort((a: any, b: any) => b.time.getTime() - a.time.getTime());
-    formattedTransactionsA.sort((a, b) => b.time.getTime() - a.time.getTime());
-    formattedTransactionsB.sort((a, b) => b.time.getTime() - a.time.getTime());
+    formattedTransactionsA.sort((a: any, b :any) => b.time.getTime() - a.time.getTime());
+    formattedTransactionsB.sort((a:any, b:any) => b.time.getTime() - a.time.getTime());
 
     return(
         <div className="w-full p-3 text-white ">
