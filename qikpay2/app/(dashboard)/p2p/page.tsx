@@ -14,7 +14,7 @@ async function list(){
             email : true,
         },
     })
-    const AllUser = Users.map((user) => {
+    const AllUser = Users.map((user:any) => {
         return {
             id: user.id,
             name: user.name,
