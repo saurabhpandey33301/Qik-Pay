@@ -68,7 +68,7 @@ export const authOptions = {
       },
 
       async redirect({ baseUrl }: { baseUrl: string }) {
-        return `${baseUrl}/dashboard`;
+        return `${baseUrl}`;
       },
       secret: process.env.NEXTAUTH_SECRET, // Ensure this is set
   },
