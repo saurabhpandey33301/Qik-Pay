@@ -38,8 +38,8 @@ export const authOptions = {
             data: {
               email: user.email,
               name: user.name ?? "New User",
-              number: user.email, // Ensure this field exists in Prisma
-              password: "default", // Ensure this field exists in Prisma
+              number: user.email, 
+              password: "default",
             },
           });
         }
@@ -66,8 +66,9 @@ export const authOptions = {
     },
 
     async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
-      return url.startsWith(baseUrl) ? url : `${baseUrl}/home`;
-    },
+        return url.startsWith("https://qikpay.vercel.app/") ? url : "https://qikpay.vercel.app/home";
+      }
+      
   },
-  secret: process.env.NEXTAUTH_SECRET, // Ensure this is set
+  secret: process.env.NEXTAUTH_SECRET, 
 };
