@@ -19,7 +19,7 @@ export const Appbar = ({
             {/* Button Section */}
             <div className=" pt-2 ps-9">
 
-                <button  className="text-slate-500 hover:text-lime-400 hover:transform hover:translate-x-2 text-xl font-mono font-medium flex gap-2"  onClick={user ? onSignout : onSignin} >
+                <button  className="text-slate-500 hover:cursor-pointer hover:text-lime-400 hover:transform hover:translate-x-2 text-xl font-mono font-medium flex gap-2"  onClick={user ? onSignout : onSignin} >
                     <Logo user={user}  />
                   {user ? "Logout" : "Login"}
                 </button>

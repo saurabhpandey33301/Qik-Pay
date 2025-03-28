@@ -1,6 +1,7 @@
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/index";
 import { User, Account, Session, DefaultSession } from "next-auth";
+import { signOut } from "next-auth/react";
 
 
 
@@ -22,8 +23,8 @@ export const authOptions = {
     }),
   ],
   pages: {
-    signIn: "/auth/signin", // Custom sign-in page
-    error: "/auth/error", // (Optional) Error page
+    signIn: "/auth/signin", 
+    error: "/auth/error", 
   },
   callbacks: {
     async signIn({ user, account }: { user: User; account: Account | null }) {
@@ -73,5 +74,6 @@ export const authOptions = {
       return url.startsWith(baseUrl) ? url : `${baseUrl}/home`;
     },
   },
+  
   secret: process.env.NEXTAUTH_SECRET, 
 };

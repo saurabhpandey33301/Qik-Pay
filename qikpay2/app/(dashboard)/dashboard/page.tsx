@@ -9,7 +9,7 @@ import { authOptions } from "@/app/lib/auth";
 async function getBalance() {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.id) {
+    if (!session?.user?.name) {
 
         return { amount: 0, locked: 0 };
     }

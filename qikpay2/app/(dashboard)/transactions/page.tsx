@@ -14,7 +14,7 @@ export default async function() {
    
     const session = await getServerSession(authOptions);
     
-    if (!session?.user?.id) {
+    if (!session?.user?.name) {
         return <div className="flex justify-center items-center text-gray-400 text-lg mt-50">Please login first.</div>;
     }
 
