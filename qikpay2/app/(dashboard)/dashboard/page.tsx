@@ -8,7 +8,11 @@ import { authOptions } from "@/app/lib/auth";
 
 async function getBalance() {
     const session = await getServerSession(authOptions);
-    
+
+    if (!session?.user?.id) {
+
+        return { amount: 0, locked: 0 };
+    }
     const balance = await prisma.balance.findFirst({
         where: {
             userId: Number(session?.user?.id) 
@@ -22,6 +26,10 @@ async function getBalance() {
 
 export default async function Dashboard() {
     const session = await getServerSession(authOptions);
+
+    if (!session?.user?.id) {
+        return <div className="flex justify-center items-center text-gray-400 text-lg mt-50">Please login first.</div>;
+    }
     const balance = await getBalance();
 
     return (
@@ -38,7 +46,7 @@ export default async function Dashboard() {
 
             {/* Balance Card */}
             <div className="w-full  animate-slide-up">
-                <BalanceCard amount={balance.amount} />
+                <BalanceCard amount={balance?.amount} />
             </div>
         </div>
     );

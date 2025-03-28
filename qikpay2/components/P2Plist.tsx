@@ -62,6 +62,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function P2Plist({ Alluser }: { Alluser: any }) {
+  
   const [searchList, setSearchList] = useState(Alluser);
   const [search, setSearch] = useState("");
   const router = useRouter();

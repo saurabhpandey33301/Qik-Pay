@@ -1,10 +1,12 @@
 
 
+import React from "react";
 import { prisma } from "@/index";
 import P2Plist from "../../../components/P2Plist";
+import { getServerSession } from "next-auth";
 
 async function list(){
-   
+    
     const Users = await prisma.user.findMany({
         select: {
             id: true,
@@ -25,6 +27,11 @@ async function list(){
 }
 
 export default async function() {
+    const session = await getServerSession();
+    
+    if (!session?.user?.id) {
+        return <div className="flex justify-center items-center text-gray-400 text-lg mt-50">Please login first.</div>;
+    }
     const Alluser = await list();
     return <div className="w-full">
         <P2Plist Alluser={Alluser}></P2Plist>

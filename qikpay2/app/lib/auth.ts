@@ -21,6 +21,10 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
   ],
+  pages: {
+    signIn: "/auth/signin", // Custom sign-in page
+    error: "/auth/error", // (Optional) Error page
+  },
   callbacks: {
     async signIn({ user, account }: { user: User; account: Account | null }) {
       if (account?.provider === "google") {
@@ -66,9 +70,8 @@ export const authOptions = {
     },
 
     async redirect({ url, baseUrl }: { url: string; baseUrl: string }) {
-        return url.startsWith("https://qikpay.vercel.app/") ? url : "https://qikpay.vercel.app/home";
-      }
-      
+      return url.startsWith(baseUrl) ? url : `${baseUrl}/home`;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET, 
 };
