@@ -10,8 +10,9 @@
     "postinstall": "npx prisma generate"
   },
   "dependencies": {
+    "@auth/core": "^0.38.0",
     "next": "15.2.4",
-    "next-auth": "^4.24.11",
+    "next-auth": "^5.0.0-beta.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "recoil": "^0.7.7"

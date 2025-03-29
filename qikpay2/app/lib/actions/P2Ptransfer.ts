@@ -1,11 +1,12 @@
 "use server"
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth";
+
+
 import { prisma } from "@/index";
+import { auth } from "../auth";
 
 export async function P2Ptransfer(to : string, amount : number) {
     // Implement P2P transfer here
-    const session = await getServerSession(authOptions);
+    const session = await auth()
     const from = session?.user?.id;
     if(!from){
         return{
@@ -15,7 +16,7 @@ export async function P2Ptransfer(to : string, amount : number) {
     }
     const toUser  = await prisma.user.findFirst({
         where:{
-            number: to
+            email: to
         }
     })
     if(!toUser){
@@ -31,7 +32,7 @@ export async function P2Ptransfer(to : string, amount : number) {
 
         const fromBalance = await tx.balance.findUnique({
             where:{
-                userId : Number(from)
+                userId : (from)
             }
         });
         if(!fromBalance || fromBalance.amount < amount ){
@@ -39,7 +40,7 @@ export async function P2Ptransfer(to : string, amount : number) {
         }
         await tx.balance.update({
             where:{
-                userId: Number(from)
+                userId: (from)
             },
             data:{
                 amount:{
@@ -70,7 +71,7 @@ export async function P2Ptransfer(to : string, amount : number) {
         })
         await tx.p2Ptransaction.create({
             data:{
-                fromUserId: Number(from),
+                fromUserId: (from),
                 toUserId: toUser.id,
                 amount: -amount,
                 timestamp: new Date()
@@ -78,8 +79,8 @@ export async function P2Ptransfer(to : string, amount : number) {
         })
         await tx.p2Ptransaction.create({
             data:{
-                fromUserId: Number(toUser.id),
-                toUserId: Number(from),
+                fromUserId:(toUser.id),
+                toUserId: (from),
                 amount: +amount,
                 timestamp: new Date()
             }

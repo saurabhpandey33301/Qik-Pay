@@ -8,11 +8,11 @@ datasource db {
 }
 
 model Balance {
-  id     Int  @id @default(autoincrement())
-  userId Int  @unique
+  id     Int    @id @default(autoincrement())
+  userId String @unique
   amount Int
   locked Int
-  User   User @relation(fields: [userId], references: [id])
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model Merchant {
@@ -29,7 +29,7 @@ model OnRampTransaction {
   provider  String
   amount    Int
   startTime DateTime
-  userId    Int
+  userId    String
   User      User         @relation(fields: [userId], references: [id])
 }
 
@@ -37,18 +37,18 @@ model P2Ptransaction {
   id                                   Int      @id @default(autoincrement())
   amount                               Int
   timestamp                            DateTime
-  fromUserId                           Int
-  toUserId                             Int
+  fromUserId                           String
+  toUserId                             String
   User_P2Ptransaction_fromUserIdToUser User     @relation("P2Ptransaction_fromUserIdToUser", fields: [fromUserId], references: [id])
   User_P2Ptransaction_toUserIdToUser   User     @relation("P2Ptransaction_toUserIdToUser", fields: [toUserId], references: [id])
 }
 
 model User {
-  id                                             Int                 @id @default(autoincrement())
+  id                                             String              @id @default(cuid())
   email                                          String?             @unique
   name                                           String?
-  number                                         String              @unique
-  password                                       String
+  password                                       String?
+  image                                          String?
   Balance                                        Balance?
   OnRampTransaction                              OnRampTransaction[]
   P2Ptransaction_P2Ptransaction_fromUserIdToUser P2Ptransaction[]    @relation("P2Ptransaction_fromUserIdToUser")

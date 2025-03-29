@@ -1,18 +1,19 @@
 
-import { getServerSession } from "next-auth";
+
 import React from "react";
 
 
 
 import { prisma } from "@/index";
 
-import { authOptions } from "../../lib/auth";
+
 import TxnClient from "../../../components/txn";
+import { auth } from "@/app/lib/auth";
 
 
 export default async function() {
    
-    const session = await getServerSession(authOptions);
+    const session = await auth();
     
     if (!session?.user?.name) {
         return <div className="flex justify-center items-center text-gray-400 text-lg mt-50">Please login first.</div>;
@@ -20,12 +21,12 @@ export default async function() {
 
     const transactionsA = await prisma.onRampTransaction.findMany({
         where: {
-            userId: Number(session.user.id),
+            userId: (session.user.id),
         },
     });
     const transactionsB = await prisma.p2Ptransaction.findMany({
         where: {
-            fromUserId: Number(session.user.id),
+            fromUserId: (session.user.id),
         },
         select:
         {   

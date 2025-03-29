@@ -1,13 +1,13 @@
 
-import { getServerSession } from "next-auth";
+
 import { BalanceCard } from "../../../components/BalanceCard";
 
 import { prisma } from "@/index";
 
-import { authOptions } from "@/app/lib/auth";
+import {auth} from "../../lib/auth"
 
 async function getBalance() {
-    const session = await getServerSession(authOptions);
+    const session = await auth()
 
     if (!session?.user?.name) {
 
@@ -15,7 +15,7 @@ async function getBalance() {
     }
     const balance = await prisma.balance.findFirst({
         where: {
-            userId: Number(session?.user?.id) 
+            userId: (session?.user?.id) 
         }
     });
     return {
@@ -25,7 +25,7 @@ async function getBalance() {
 }
 
 export default async function Dashboard() {
-    const session = await getServerSession(authOptions);
+    const session = await auth();
 
     if (!session?.user?.id) {
         return <div className="flex justify-center items-center text-gray-400 text-lg mt-50">Please login first.</div>;

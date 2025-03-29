@@ -1,12 +1,13 @@
 "use server"
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth";
+
+
 import { prisma } from "@/index";
+import { auth } from "../auth";
 
 
 
 export async function createOnrampTxn (amount : number , provider : string) {
-   const session = await getServerSession(authOptions);
+   const session = await auth()
    const userId = session?.user?.id;
    const token = Math.random().toString();
 
@@ -18,7 +19,7 @@ export async function createOnrampTxn (amount : number , provider : string) {
    try {
        await prisma.onRampTransaction.create({
         data:{
-            userId : Number(userId),
+            userId : (userId),
             amount : amount,
             status : "Processing",
             startTime : new Date(),
@@ -43,7 +44,7 @@ export async function createOnrampTxn (amount : number , provider : string) {
             
             prisma.balance.updateMany({
                 where: {
-                    userId: Number(userId)
+                    userId: (userId)
                 },
                 data: {
                     amount: {
@@ -54,11 +55,11 @@ export async function createOnrampTxn (amount : number , provider : string) {
             }),
             prisma.balance.upsert({
                 where: {
-                  userId: Number(userId),
+                  userId: (userId),
                 },
                 update: {}, // Prevents updating if user exists
                 create: {
-                  userId: Number(userId),
+                  userId: (userId),
                   amount: Number(amount),
                   locked: 0,
                 },

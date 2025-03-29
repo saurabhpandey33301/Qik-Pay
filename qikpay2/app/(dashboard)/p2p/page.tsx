@@ -3,7 +3,8 @@
 import React from "react";
 import { prisma } from "@/index";
 import P2Plist from "../../../components/P2Plist";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/lib/auth";
+
 
 async function list(){
     
@@ -11,7 +12,6 @@ async function list(){
         select: {
             id: true,
             name: true,
-            number : true,
             email : true,
         },
     })
@@ -27,7 +27,7 @@ async function list(){
 }
 
 export default async function() {
-    const session = await getServerSession();
+    const session = await auth()
  
     if (!session?.user?.name) {
         return (

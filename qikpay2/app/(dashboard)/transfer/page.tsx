@@ -1,11 +1,12 @@
 
 import React from "react";
 import { AddMoney } from "../../../components/AddMoneyCard";
-import { getServerSession } from "next-auth";
+import { auth } from "@/app/lib/auth";
+
 
 
 export default async function TransferPage() {
-    const session = await getServerSession();
+    const session = await auth()
 
     if (!session?.user?.name) {
         return (
